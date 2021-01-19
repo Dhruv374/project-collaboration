@@ -1,0 +1,49 @@
+body {
+    background-color: #9cc9c8;
+}
+
+#header {
+    width: 100%;
+    background-color:#254e58;
+    text-align: center;
+    margin-top: 15px;
+    border-style: inset;
+    border-radius: 15px;
+}
+
+#projectName 
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color:#deeded;
+    font-size: large;
+}
+
+#main {
+    width: 60%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    margin-left: 20%;
+    margin-top: 15px;
+}
+
+.forOneUser 
+{
+    background-color: #254e58;
+    color: #deeded;
+    float: left;
+    margin: 5px;
+    width: 40%;
+    border-style: ridge;
+    border-radius: 15px;
+    display: inline-block;
+    text-align: center;
+}
+
+.userName {
+    font-size: 22px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
