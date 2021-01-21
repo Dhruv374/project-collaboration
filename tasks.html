@@ -6,534 +6,501 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <div id="header">
-            <div id="projectName">
+        <div class="base">
+
+
+            <header class="header">
+              <!-- <div class="logo button">
+                <h1>McDonald's website project</h1>
+              </div> -->
+
+              <div id="projectName">
                 <h1>McDonalds Website Project</h1>
-            </div>
-            <div class="topnav">
-                <a class="active" href="#home">Tasks assigned</a>
-                <a href="#contact">Team info</a>
-                <a href="#about">About project</a>
-            </div>
-        </div>
-        <div id="main">
+              </div>
+              <div class="topnav">
+                <a class="active" href="#">Tasks assigned</a>
+                <a href="#">Team info</a>
+                <a href="#">About project</a>
+              </div>
+            </header>
 
-            <!-- For one User -->
-            <div class="forOneUser">
-                <div class="userName">
-                    Dhruv Patel
+
+            <section class="board">
+              <!-- <div class="board-header">
+                <div class="left">
+                  <div class="board-header-text">Board Title</div>
+                  <div class="button">Star</div>
+                  <div class="button">Personal</div>
+                  <div class="button">Private</div>
                 </div>
-                <hr class="lineBreaks">
-
-                <ul class="taskList">
-                    <li class="individualTasks">
-                        
-                        <div class="taskTitle">
-                            Create welcome page for restaurant!
-                        </div>
-                        <hr class="titleLineBreaks">
-
-                        <div class="statusDiv">
-                            <label for="status">Status :</label>
-
-                            <select id="status">
-                            <option value="Not Started">Not Started</option>
-                            <option value="In-progress">In-progress</option>
-                            <option value="On Hold">On hold</option>
-                            <option value="Completed">Completed</option>
-                            </select>
-                        </div>
-                        <div class="stagesDiv">
-                            <label>Stages :</label>
-                       <!--     <div class="stagesList"> -->
-                                <ul class="stagesList">
-                                    <li><input type="checkbox"> &nbsp; Create HTML page</li>
-                                    <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
-                                    <li><input type="checkbox"> &nbsp; Add JavaScript</li>
-                                    <li><input type="checkbox"> &nbsp; Deploy the page</li>
-                                </ul>
-                        <!--    </div>    -->
-                        </div>
-                        <div class="DateDiv">
-                            <label>Due Date :</label>
-                            19/01/2021
-                        </div>
-                    </li>
-                    <li class="individualTasks">Task-2</li>
-                    <li class="individualTasks">Task-3</li>
-                    <li class="individualTasks">Task-4</li>
-                    <li class="individualTasks">Task-5</li>
-                </ul>
-
-                <button class="addTask">
-                    Add task
-                </button>
-            </div>
-
-
-            <!-- For one User -->
-            <div class="forOneUser">
-                <div class="userName">
-                    Dhruv Patel
+                <div class="right">
+                  <div class="button">Show menu</div>
+                  <div class="button">Butler</div>
                 </div>
-                <hr class="lineBreaks">
-
-                <ul class="taskList">
-                    <li class="individualTasks">
-                        
-                        <div class="taskTitle">
-                            Create welcome page for restaurant!
-                        </div>
-                        <hr class="titleLineBreaks">
-
-                        <div class="statusDiv">
-                            <label for="status">Status :</label>
-
-                            <select id="status">
-                            <option value="Not Started">Not Started</option>
-                            <option value="In-progress">In-progress</option>
-                            <option value="On Hold">On hold</option>
-                            <option value="Completed">Completed</option>
-                            </select>
-                        </div>
-                        <div class="stagesDiv">
-                            <label>Stages :</label>
-                       <!--     <div class="stagesList"> -->
-                                <ul class="stagesList">
-                                    <li><input type="checkbox"> &nbsp; Create HTML page</li>
-                                    <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
-                                    <li><input type="checkbox"> &nbsp; Add JavaScript</li>
-                                    <li><input type="checkbox"> &nbsp; Deploy the page</li>
-                                </ul>
-                        <!--    </div>    -->
-                        </div>
-                        <div class="DateDiv">
-                            <label>Due Date :</label>
-                            19/01/2021
-                        </div>
-                    </li>
-                    <li class="individualTasks">Task-2</li>
-                    <li class="individualTasks">Task-3</li>
-                    <li class="individualTasks">Task-4</li>
-                    <li class="individualTasks">Task-5</li>
-                </ul>
-
-                <button class="addTask">
-                    Add task
-                </button>
-            </div>
-
-
-            <!-- For one User -->
-            <div class="forOneUser">
-                <div class="userName">
+              </div> -->
+              <div class="board-lists">
+                <section class="board-list">
+                  <div class="list-title">
                     Dhruv Patel
-                </div>
-                <hr class="lineBreaks">
+                  </div>
+                  <div class="card">
+                      <div class="taskTitle">
+                        Create welcome page for restaurant!
+                    </div>
+                    <hr class="titleLineBreaks">
 
-                <ul class="taskList">
-                    <li class="individualTasks">
-                        
-                        <div class="taskTitle">
-                            Create welcome page for restaurant!
-                        </div>
-                        <hr class="titleLineBreaks">
+                    <div class="statusDiv">
+                        <label for="status">Status :</label>
 
-                        <div class="statusDiv">
-                            <label for="status">Status :</label>
+                        <select id="status">
+                        <option value="Not Started">Not Started</option>
+                        <option value="In-progress">In-progress</option>
+                        <option value="On Hold">On hold</option>
+                        <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="stagesDiv">
+                        <label>Stages :</label>
+                <!--     <div class="stagesList"> -->
+                            <ul class="stagesList">
+                                <li><input type="checkbox"> &nbsp; Create HTML page</li>
+                                <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
+                                <li><input type="checkbox"> &nbsp; Add JavaScript</li>
+                                <li><input type="checkbox"> &nbsp; Deploy the page</li>
+                            </ul>
+                    <!--    </div>    -->
+                    </div>
+                    <div class="DateDiv">
+                        <label>Due Date :</label>
+                        19/01/2021
+                    </div>
+                  </div>
+                  <div class="card">
+                    Card 2
+                  </div>
+                  <div class="card">
+                    Card 3
+                  </div>
+                  <div class="card">
+                    Card 4
+                  </div>
+                  <div class="card">
+                    Card 5
+                  </div>
+                  <div class="add-card">
+                    + Add another card
+                  </div>
+                </section>
 
-                            <select id="status">
-                            <option value="Not Started">Not Started</option>
-                            <option value="In-progress">In-progress</option>
-                            <option value="On Hold">On hold</option>
-                            <option value="Completed">Completed</option>
-                            </select>
-                        </div>
-                        <div class="stagesDiv">
-                            <label>Stages :</label>
-                       <!--     <div class="stagesList"> -->
-                                <ul class="stagesList">
-                                    <li><input type="checkbox"> &nbsp; Create HTML page</li>
-                                    <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
-                                    <li><input type="checkbox"> &nbsp; Add JavaScript</li>
-                                    <li><input type="checkbox"> &nbsp; Deploy the page</li>
-                                </ul>
-                        <!--    </div>    -->
-                        </div>
-                        <div class="DateDiv">
-                            <label>Due Date :</label>
-                            19/01/2021
-                        </div>
-                    </li>
-                    <li class="individualTasks">Task-2</li>
-                    <li class="individualTasks">Task-3</li>
-                    <li class="individualTasks">Task-4</li>
-                    <li class="individualTasks">Task-5</li>
-                </ul>
 
-                <button class="addTask">
-                    Add task
-                </button>
-            </div>
+                <section class="board-list">
+                  <div class="list-title">
+                    John Paul
+                  </div>
+                  <div class="card">
+                      <div class="taskTitle">
+                        Create cart view for user
+                    </div>
+                    <hr class="titleLineBreaks">
 
-            <!-- For one User -->
-            <div class="forOneUser">
-                <div class="userName">
+                    <div class="statusDiv">
+                        <label for="status">Status :</label>
+
+                        <select id="status">
+                        <option value="Not Started">Not Started</option>
+                        <option value="In-progress">In-progress</option>
+                        <option value="On Hold">On hold</option>
+                        <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="stagesDiv">
+                        <label>Stages :</label>
+                <!--     <div class="stagesList"> -->
+                            <ul class="stagesList">
+                                <li><input type="checkbox"> &nbsp; Design front-end</li>
+                                <li><input type="checkbox"> &nbsp; Add database compatibility</li>
+                                <li><input type="checkbox"> &nbsp; Add payment options</li>
+                            </ul>
+                    <!--    </div>    -->
+                    </div>
+                    <div class="DateDiv">
+                        <label>Due Date :</label>
+                        19/01/2021
+                    </div>
+                  </div>
+                  <div class="card">
+                    Card 2
+                  </div>
+                  <div class="card">
+                    Card 3
+                  </div>
+                  <div class="card">
+                    Card 4
+                  </div>
+                  <div class="card">
+                    Card 5
+                  </div>
+                  <div class="card">
+                    Card 6
+                  </div>
+                  <div class="card">
+                    Card 7
+                  </div>
+                  <div class="card">
+                    Card 8
+                  </div>
+                  <div class="card">
+                    Card 9
+                  </div>
+                  <div class="card">
+                    Card 10
+                  </div>
+                  <div class="card">
+                    Card 11
+                  </div>
+                  <div class="card">
+                    Card 12
+                  </div>
+                  <div class="card">
+                    Card 13
+                  </div>
+                  <div class="card">
+                    Card 14
+                  </div>
+                  <div class="card">
+                    Card 15
+                  </div>
+                  <div class="add-card">
+                    + Add another card
+                  </div>
+                </section>
+
+
+                <section class="board-list">
+                  <div class="list-title">
                     Dhruv Patel
-                </div>
-                <hr class="lineBreaks">
+                  </div>
+                  <div class="card">
+                      <div class="taskTitle">
+                        Create welcome page for restaurant!
+                    </div>
+                    <hr class="titleLineBreaks">
 
-                <ul class="taskList">
-                    <li class="individualTasks">
-                        
-                        <div class="taskTitle">
-                            Create welcome page for restaurant!
-                        </div>
-                        <hr class="titleLineBreaks">
+                    <div class="statusDiv">
+                        <label for="status">Status :</label>
 
-                        <div class="statusDiv">
-                            <label for="status">Status :</label>
+                        <select id="status">
+                        <option value="Not Started">Not Started</option>
+                        <option value="In-progress">In-progress</option>
+                        <option value="On Hold">On hold</option>
+                        <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="stagesDiv">
+                        <label>Stages :</label>
+                <!--     <div class="stagesList"> -->
+                            <ul class="stagesList">
+                                <li><input type="checkbox"> &nbsp; Create HTML page</li>
+                                <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
+                                <li><input type="checkbox"> &nbsp; Add JavaScript</li>
+                                <li><input type="checkbox"> &nbsp; Deploy the page</li>
+                            </ul>
+                    <!--    </div>    -->
+                    </div>
+                    <div class="DateDiv">
+                        <label>Due Date :</label>
+                        19/01/2021
+                    </div>
+                  </div>
+                  <div class="card">
+                    Card 2
+                  </div>
+                  <div class="card">
+                    Card 3
+                  </div>
+                  <div class="card">
+                    Card 4
+                  </div>
+                  <div class="card">
+                    Card 5
+                  </div>
+                  <div class="add-card">
+                    + Add another card
+                  </div>
+                </section>
 
-                            <select id="status">
-                            <option value="Not Started">Not Started</option>
-                            <option value="In-progress">In-progress</option>
-                            <option value="On Hold">On hold</option>
-                            <option value="Completed">Completed</option>
-                            </select>
-                        </div>
-                        <div class="stagesDiv">
-                            <label>Stages :</label>
-                       <!--     <div class="stagesList"> -->
-                                <ul class="stagesList">
-                                    <li><input type="checkbox"> &nbsp; Create HTML page</li>
-                                    <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
-                                    <li><input type="checkbox"> &nbsp; Add JavaScript</li>
-                                    <li><input type="checkbox"> &nbsp; Deploy the page</li>
-                                </ul>
-                        <!--    </div>    -->
-                        </div>
-                        <div class="DateDiv">
-                            <label>Due Date :</label>
-                            19/01/2021
-                        </div>
-                    </li>
-                    <li class="individualTasks">Task-2</li>
-                    <li class="individualTasks">Task-3</li>
-                    <li class="individualTasks">Task-4</li>
-                    <li class="individualTasks">Task-5</li>
-                </ul>
-                <button class="addTask">
-                    Add task
-                </button>
-            </div>
-
-            <!-- For one User -->
-            <div class="forOneUser">
-                <div class="userName">
+                <section class="board-list">
+                  <div class="list-title">
                     Dhruv Patel
-                </div>
-                <hr class="lineBreaks">
+                  </div>
+                  <div class="card">
+                      <div class="taskTitle">
+                        Create welcome page for restaurant!
+                    </div>
+                    <hr class="titleLineBreaks">
 
-                <ul class="taskList">
-                    <li class="individualTasks">
-                        
-                        <div class="taskTitle">
-                            Create welcome page for restaurant!
-                        </div>
-                        <hr class="titleLineBreaks">
+                    <div class="statusDiv">
+                        <label for="status">Status :</label>
 
-                        <div class="statusDiv">
-                            <label for="status">Status :</label>
+                        <select id="status">
+                        <option value="Not Started">Not Started</option>
+                        <option value="In-progress">In-progress</option>
+                        <option value="On Hold">On hold</option>
+                        <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="stagesDiv">
+                        <label>Stages :</label>
+                <!--     <div class="stagesList"> -->
+                            <ul class="stagesList">
+                                <li><input type="checkbox"> &nbsp; Create HTML page</li>
+                                <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
+                                <li><input type="checkbox"> &nbsp; Add JavaScript</li>
+                                <li><input type="checkbox"> &nbsp; Deploy the page</li>
+                            </ul>
+                    <!--    </div>    -->
+                    </div>
+                    <div class="DateDiv">
+                        <label>Due Date :</label>
+                        19/01/2021
+                    </div>
+                  </div>
+                  <div class="card">
+                    Card 2
+                  </div>
+                  <div class="card">
+                    Card 3
+                  </div>
+                  <div class="card">
+                    Card 4
+                  </div>
+                  <div class="card">
+                    Card 5
+                  </div>
+                  <div class="add-card">
+                    + Add another card
+                  </div>
+                </section>
 
-                            <select id="status">
-                            <option value="Not Started">Not Started</option>
-                            <option value="In-progress">In-progress</option>
-                            <option value="On Hold">On hold</option>
-                            <option value="Completed">Completed</option>
-                            </select>
-                        </div>
-                        <div class="stagesDiv">
-                            <label>Stages :</label>
-                       <!--     <div class="stagesList"> -->
-                                <ul class="stagesList">
-                                    <li><input type="checkbox"> &nbsp; Create HTML page</li>
-                                    <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
-                                    <li><input type="checkbox"> &nbsp; Add JavaScript</li>
-                                    <li><input type="checkbox"> &nbsp; Deploy the page</li>
-                                </ul>
-                        <!--    </div>    -->
-                        </div>
-                        <div class="DateDiv">
-                            <label>Due Date :</label>
-                            19/01/2021
-                        </div>
-                    </li>
-                    <li class="individualTasks">Task-2</li>
-                    <li class="individualTasks">Task-3</li>
-                    <li class="individualTasks">Task-4</li>
-                    <li class="individualTasks">Task-5</li>
-                </ul>
-                <button class="addTask">
-                    Add task
-                </button>
-            </div>
-
-            <!-- For one User -->
-            <div class="forOneUser">
-                <div class="userName">
+                <section class="board-list">
+                  <div class="list-title">
                     Dhruv Patel
-                </div>
-                <hr class="lineBreaks">
+                  </div>
+                  <div class="card">
+                      <div class="taskTitle">
+                        Create welcome page for restaurant!
+                    </div>
+                    <hr class="titleLineBreaks">
 
-                <ul class="taskList">
-                    <li class="individualTasks">
-                        
-                        <div class="taskTitle">
-                            Create welcome page for restaurant!
-                        </div>
-                        <hr class="titleLineBreaks">
+                    <div class="statusDiv">
+                        <label for="status">Status :</label>
 
-                        <div class="statusDiv">
-                            <label for="status">Status :</label>
+                        <select id="status">
+                        <option value="Not Started">Not Started</option>
+                        <option value="In-progress">In-progress</option>
+                        <option value="On Hold">On hold</option>
+                        <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="stagesDiv">
+                        <label>Stages :</label>
+                <!--     <div class="stagesList"> -->
+                            <ul class="stagesList">
+                                <li><input type="checkbox"> &nbsp; Create HTML page</li>
+                                <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
+                                <li><input type="checkbox"> &nbsp; Add JavaScript</li>
+                                <li><input type="checkbox"> &nbsp; Deploy the page</li>
+                            </ul>
+                    <!--    </div>    -->
+                    </div>
+                    <div class="DateDiv">
+                        <label>Due Date :</label>
+                        19/01/2021
+                    </div>
+                  </div>
+                  <div class="card">
+                    Card 2
+                  </div>
+                  <div class="card">
+                    Card 3
+                  </div>
+                  <div class="card">
+                    Card 4
+                  </div>
+                  <div class="card">
+                    Card 5
+                  </div>
+                  <div class="add-card">
+                    + Add another card
+                  </div>
+                </section>
 
-                            <select id="status">
-                            <option value="Not Started">Not Started</option>
-                            <option value="In-progress">In-progress</option>
-                            <option value="On Hold">On hold</option>
-                            <option value="Completed">Completed</option>
-                            </select>
-                        </div>
-                        <div class="stagesDiv">
-                            <label>Stages :</label>
-                       <!--     <div class="stagesList"> -->
-                                <ul class="stagesList">
-                                    <li><input type="checkbox"> &nbsp; Create HTML page</li>
-                                    <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
-                                    <li><input type="checkbox"> &nbsp; Add JavaScript</li>
-                                    <li><input type="checkbox"> &nbsp; Deploy the page</li>
-                                </ul>
-                        <!--    </div>    -->
-                        </div>
-                        <div class="DateDiv">
-                            <label>Due Date :</label>
-                            19/01/2021
-                        </div>
-                    </li>
-                    <li class="individualTasks">Task-2</li>
-                    <li class="individualTasks">Task-3</li>
-                    <li class="individualTasks">Task-4</li>
-                    <li class="individualTasks">Task-5</li>
-                </ul>
-                <button class="addTask">
-                    Add task
-                </button>
-            </div>
 
-            <!-- For one User -->
-            <div class="forOneUser">
-                <div class="userName">
+                <section class="board-list">
+                  <div class="list-title">
                     Dhruv Patel
-                </div>
-                <hr class="lineBreaks">
+                  </div>
+                  <div class="card">
+                      <div class="taskTitle">
+                        Create welcome page for restaurant!
+                    </div>
+                    <hr class="titleLineBreaks">
 
-                <ul class="taskList">
-                    <li class="individualTasks">
-                        
-                        <div class="taskTitle">
-                            Create welcome page for restaurant!
-                        </div>
-                        <hr class="titleLineBreaks">
+                    <div class="statusDiv">
+                        <label for="status">Status :</label>
 
-                        <div class="statusDiv">
-                            <label for="status">Status :</label>
+                        <select id="status">
+                        <option value="Not Started">Not Started</option>
+                        <option value="In-progress">In-progress</option>
+                        <option value="On Hold">On hold</option>
+                        <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="stagesDiv">
+                        <label>Stages :</label>
+                <!--     <div class="stagesList"> -->
+                            <ul class="stagesList">
+                                <li><input type="checkbox"> &nbsp; Create HTML page</li>
+                                <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
+                                <li><input type="checkbox"> &nbsp; Add JavaScript</li>
+                                <li><input type="checkbox"> &nbsp; Deploy the page</li>
+                            </ul>
+                    <!--    </div>    -->
+                    </div>
+                    <div class="DateDiv">
+                        <label>Due Date :</label>
+                        19/01/2021
+                    </div>
+                  </div>
+                  <div class="card">
+                    Card 2
+                  </div>
+                  <div class="card">
+                    Card 3
+                  </div>
+                  <div class="card">
+                    Card 4
+                  </div>
+                  <div class="card">
+                    Card 5
+                  </div>
+                  <div class="add-card">
+                    + Add another card
+                  </div>
+                </section>
 
-                            <select id="status">
-                            <option value="Not Started">Not Started</option>
-                            <option value="In-progress">In-progress</option>
-                            <option value="On Hold">On hold</option>
-                            <option value="Completed">Completed</option>
-                            </select>
-                        </div>
-                        <div class="stagesDiv">
-                            <label>Stages :</label>
-                       <!--     <div class="stagesList"> -->
-                                <ul class="stagesList">
-                                    <li><input type="checkbox"> &nbsp; Create HTML page</li>
-                                    <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
-                                    <li><input type="checkbox"> &nbsp; Add JavaScript</li>
-                                    <li><input type="checkbox"> &nbsp; Deploy the page</li>
-                                </ul>
-                        <!--    </div>    -->
-                        </div>
-                        <div class="DateDiv">
-                            <label>Due Date :</label>
-                            19/01/2021
-                        </div>
-                    </li>
-                    <li class="individualTasks">Task-2</li>
-                    <li class="individualTasks">Task-3</li>
-                    <li class="individualTasks">Task-4</li>
-                    <li class="individualTasks">Task-5</li>
-                </ul>
-                <button class="addTask">
-                    Add task
-                </button>
-            </div>
 
-            <!-- For one User -->
-            <div class="forOneUser">
-                <div class="userName">
+                <section class="board-list">
+                  <div class="list-title">
                     Dhruv Patel
-                </div>
-                <hr class="lineBreaks">
+                  </div>
+                  <div class="card">
+                      <div class="taskTitle">
+                        Create welcome page for restaurant!
+                    </div>
+                    <hr class="titleLineBreaks">
 
-                <ul class="taskList">
-                    <li class="individualTasks">
-                        
-                        <div class="taskTitle">
-                            Create welcome page for restaurant!
-                        </div>
-                        <hr class="titleLineBreaks">
+                    <div class="statusDiv">
+                        <label for="status">Status :</label>
 
-                        <div class="statusDiv">
-                            <label for="status">Status :</label>
+                        <select id="status">
+                        <option value="Not Started">Not Started</option>
+                        <option value="In-progress">In-progress</option>
+                        <option value="On Hold">On hold</option>
+                        <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="stagesDiv">
+                        <label>Stages :</label>
+                <!--     <div class="stagesList"> -->
+                            <ul class="stagesList">
+                                <li><input type="checkbox"> &nbsp; Create HTML page</li>
+                                <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
+                                <li><input type="checkbox"> &nbsp; Add JavaScript</li>
+                                <li><input type="checkbox"> &nbsp; Deploy the page</li>
+                            </ul>
+                    <!--    </div>    -->
+                    </div>
+                    <div class="DateDiv">
+                        <label>Due Date :</label>
+                        19/01/2021
+                    </div>
+                  </div>
+                  <div class="card">
+                    Card 2
+                  </div>
+                  <div class="card">
+                    Card 3
+                  </div>
+                  <div class="card">
+                    Card 4
+                  </div>
+                  <div class="card">
+                    Card 5
+                  </div>
+                  <div class="add-card">
+                    + Add another card
+                  </div>
+                </section>
 
-                            <select id="status">
-                            <option value="Not Started">Not Started</option>
-                            <option value="In-progress">In-progress</option>
-                            <option value="On Hold">On hold</option>
-                            <option value="Completed">Completed</option>
-                            </select>
-                        </div>
-                        <div class="stagesDiv">
-                            <label>Stages :</label>
-                       <!--     <div class="stagesList"> -->
-                                <ul class="stagesList">
-                                    <li><input type="checkbox"> &nbsp; Create HTML page</li>
-                                    <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
-                                    <li><input type="checkbox"> &nbsp; Add JavaScript</li>
-                                    <li><input type="checkbox"> &nbsp; Deploy the page</li>
-                                </ul>
-                        <!--    </div>    -->
-                        </div>
-                        <div class="DateDiv">
-                            <label>Due Date :</label>
-                            19/01/2021
-                        </div>
-                    </li>
-                    <li class="individualTasks">Task-2</li>
-                    <li class="individualTasks">Task-3</li>
-                    <li class="individualTasks">Task-4</li>
-                    <li class="individualTasks">Task-5</li>
-                </ul>
-                <button class="addTask">
-                    Add task
-                </button>
-            </div>
 
-
-            <!-- For one User -->
-            <div class="forOneUser">
-                <div class="userName">
+                <section class="board-list">
+                  <div class="list-title">
                     Dhruv Patel
-                </div>
-                <hr class="lineBreaks">
+                  </div>
+                  <div class="card">
+                      <div class="taskTitle">
+                        Create welcome page for restaurant!
+                    </div>
+                    <hr class="titleLineBreaks">
 
-                <ul class="taskList">
-                    <li class="individualTasks">
-                        
-                        <div class="taskTitle">
-                            Create welcome page for restaurant!
-                        </div>
-                        <hr class="titleLineBreaks">
+                    <div class="statusDiv">
+                        <label for="status">Status :</label>
 
-                        <div class="statusDiv">
-                            <label for="status">Status :</label>
+                        <select id="status">
+                        <option value="Not Started">Not Started</option>
+                        <option value="In-progress">In-progress</option>
+                        <option value="On Hold">On hold</option>
+                        <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="stagesDiv">
+                        <label>Stages :</label>
+                <!--     <div class="stagesList"> -->
+                            <ul class="stagesList">
+                                <li><input type="checkbox"> &nbsp; Create HTML page</li>
+                                <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
+                                <li><input type="checkbox"> &nbsp; Add JavaScript</li>
+                                <li><input type="checkbox"> &nbsp; Deploy the page</li>
+                            </ul>
+                    <!--    </div>    -->
+                    </div>
+                    <div class="DateDiv">
+                        <label>Due Date :</label>
+                        19/01/2021
+                    </div>
+                  </div>
+                  <div class="card">
+                    Card 2
+                  </div>
+                  <div class="card">
+                    Card 3
+                  </div>
+                  <div class="card">
+                    Card 4
+                  </div>
+                  <div class="card">
+                    Card 5
+                  </div>
+                  <div class="add-card">
+                    + Add another card
+                  </div>
+                </section>
 
-                            <select id="status">
-                            <option value="Not Started">Not Started</option>
-                            <option value="In-progress">In-progress</option>
-                            <option value="On Hold">On hold</option>
-                            <option value="Completed">Completed</option>
-                            </select>
-                        </div>
-                        <div class="stagesDiv">
-                            <label>Stages :</label>
-                       <!--     <div class="stagesList"> -->
-                                <ul class="stagesList">
-                                    <li><input type="checkbox"> &nbsp; Create HTML page</li>
-                                    <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
-                                    <li><input type="checkbox"> &nbsp; Add JavaScript</li>
-                                    <li><input type="checkbox"> &nbsp; Deploy the page</li>
-                                </ul>
-                        <!--    </div>    -->
-                        </div>
-                        <div class="DateDiv">
-                            <label>Due Date :</label>
-                            19/01/2021
-                        </div>
-                    </li>
-                    <li class="individualTasks">Task-2</li>
-                    <li class="individualTasks">Task-3</li>
-                    <li class="individualTasks">Task-4</li>
-                    <li class="individualTasks">Task-5</li>
-                </ul>
-                <button class="addTask">
-                    Add task
-                </button>
-            </div>
 
-
-            <!-- For one User -->
-            <div class="forOneUser">
-                <div class="userName">
-                    Dhruv Patel
-                </div>
-                <hr class="lineBreaks">
-
-                <ul class="taskList">
-                    <li class="individualTasks">
-                        
-                        <div class="taskTitle">
-                            Create welcome page for restaurant!
-                        </div>
-                        <hr class="titleLineBreaks">
-
-                        <div class="statusDiv">
-                            <label for="status">Status :</label>
-
-                            <select id="status">
-                            <option value="Not Started">Not Started</option>
-                            <option value="In-progress">In-progress</option>
-                            <option value="On Hold">On hold</option>
-                            <option value="Completed">Completed</option>
-                            </select>
-                        </div>
-                        <div class="stagesDiv">
-                            <label>Stages :</label>
-                       <!--     <div class="stagesList"> -->
-                                <ul class="stagesList">
-                                    <li><input type="checkbox"> &nbsp; Create HTML page</li>
-                                    <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
-                                    <li><input type="checkbox"> &nbsp; Add JavaScript</li>
-                                    <li><input type="checkbox"> &nbsp; Deploy the page</li>
-                                </ul>
-                        <!--    </div>    -->
-                        </div>
-                        <div class="DateDiv">
-                            <label>Due Date :</label>
-                            19/01/2021
-                        </div>
-                    </li>
-                    <li class="individualTasks">Task-2</li>
-                    <li class="individualTasks">Task-3</li>
-                    <li class="individualTasks">Task-4</li>
-                    <li class="individualTasks">Task-5</li>
-                </ul>
-                <button class="addTask">
-                    Add task
-                </button>
-            </div>
-        </div>
+                
+              </div>
+            </section>
+          </div>
     </body>
 </html>
