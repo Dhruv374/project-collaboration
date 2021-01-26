@@ -8,39 +8,91 @@
     </head>
     <body>
 
-        <div id="tasksOverlayContainer">
-          <div id="tasksOverlay">
-            <div id="taskImageOverlay">
+        <div class="tasksOverlayContainer">
+          <div class="tasksOverlay">
+            <div class="closeButton">
+              <!-- <i class="fa fa-times" aria-hidden="true"></i> -->
+              X
+            </div>
+            <div class="taskImageOverlay">
               <img src = "assets/macd-first-page.jpeg" height="160px" width="252px">
             </div>
-            <div class="taskTitle">
-                Create welcome page for restaurant!
-              </div>
-              <hr class="titleLineBreaks">
+            <div class="taskTitleOverlay">
+              <label for="taskTitleInput"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Title :- </label>
+              <input type="text" id="taskTitleInput" name="taskTitleInput">  
+            </div>
 
-              <div class="statusDiv">
-                  <label for="status">Status :</label>
+            <div class="taskUserOverlay">
+              <label for="taskUserInput"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Assigee :- </label>
+              <input type="text" id="taskUserInput" name="taskUserInput">  
+            </div>
 
-                  <select id="status">
-                  <option value="Not Started">Not Started</option>
-                  <option value="In-progress">In-progress</option>
-                  <option value="On Hold">On hold</option>
-                  <option value="Completed">Completed</option>
-                  </select>
+            <div class="taskStagesOverlay">
+              <label><i class="fa fa-check-square-o" aria-hidden="true"></i> Stages :- </label>
+              <ul class="stagesList">
+                  <li><input type="checkbox"> &nbsp; Create HTML page</li>
+                  <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
+                  <li><input type="checkbox"> &nbsp; Add JavaScript</li>
+                  <li><input type="checkbox"> &nbsp; Deploy the page</li>
+              </ul>
+              <div class="addStageButton">
+                <i class="fa fa-plus" aria-hidden="true"></i> Add Stage
               </div>
-              <div class="stagesDiv">
-                  <label>Stages :</label>
-                      <ul class="stagesList">
-                          <li><input type="checkbox"> &nbsp; Create HTML page</li>
-                          <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
-                          <li><input type="checkbox"> &nbsp; Add JavaScript</li>
-                          <li><input type="checkbox"> &nbsp; Deploy the page</li>
-                      </ul>
+            </div>
+
+            <div class="taskStatusOverlay">
+              <label for="taskSatusInput"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                Status :-</label>
+              <select id="taskStatusInput">
+              <option value="Not Started">Not Started</option>
+              <option value="In-progress">In-progress</option>
+              <option value="On Hold">On hold</option>
+              <option value="Completed">Completed</option>
+              </select>
+            </div>
+
+            <div class="taskDateOverlay">
+              <label for="taskDateInput"><i class="fa fa-clock-o" aria-hidden="true"></i> Due date :- </label>
+              <input type="date" id="taskDateInput" name="taskDateInput" placeholder="dd/mm/yyyy">  
+            </div>
+
+            <div class="overlayButtons">
+              <div class="saveButton">
+                <i class="fa fa-check" aria-hidden="true"></i> SAVE
               </div>
-              <div class="DateDiv">
-                  <label>Due Date :</label>
-                  19/01/2021
+              <div class="deleteButton">
+                <i class="fa fa-times" aria-hidden="true"></i> DELETE CARD
               </div>
+            </div>
+
+                <!-- <div class="taskTitle">
+                    Create welcome page for restaurant!
+                  </div>
+                  <hr class="titleLineBreaks">
+
+                  <div class="statusDiv">
+                      <label for="status">Status :</label>
+
+                      <select id="status">
+                      <option value="Not Started">Not Started</option>
+                      <option value="In-progress">In-progress</option>
+                      <option value="On Hold">On hold</option>
+                      <option value="Completed">Completed</option>
+                      </select>
+                  </div>
+                  <div class="stagesDiv">
+                      <label>Stages :</label>
+                          <ul class="stagesList">
+                              <li><input type="checkbox"> &nbsp; Create HTML page</li>
+                              <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
+                              <li><input type="checkbox"> &nbsp; Add JavaScript</li>
+                              <li><input type="checkbox"> &nbsp; Deploy the page</li>
+                          </ul>
+                  </div>
+                  <div class="DateDiv">
+                      <label>Due Date :</label>
+                      19/01/2021
+                  </div> -->
           </div>
         </div>  
 
