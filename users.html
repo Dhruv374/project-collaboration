@@ -15,7 +15,10 @@
               X
             </div>
             <div class="userImageOverlay">
-                <img src = "assets/john-paul.jpeg" alt="John Paul" height="150px" width="150px">
+                <label for="image-input">
+                  <img src = "assets/john-paul.jpeg" alt="John Paul" height="150px" width="150px">
+                </label>
+                <input type="file" id="image-input" accept="image/*" style="display:none">
             </div>
             <div class="userNameOverlay">
               <label for="userNameInput"><i class="fa fa-id-card-o" aria-hidden="true"></i> Full Name :- </label>
@@ -70,9 +73,9 @@
                 <h1>McDonalds Website Project</h1>
               </div>
               <div class="topnav">
-                <div class="navButton">TASKS</div>
-                <div class="navButton active">TEAM</div>
-                <div class="navButton">PROJECT</div>
+                <div class="navButton tasks">TASKS</div>
+                <div class="navButton active team">TEAM</div>
+                <div class="navButton project">PROJECT</div>
               </div>
             </header>
 
@@ -370,5 +373,6 @@
                     </div>
                 </section>
           </div>
+          <script src="scriptUser.js"></script>
     </body>
 </html>

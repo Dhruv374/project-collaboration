@@ -15,7 +15,10 @@
               X
             </div>
             <div class="taskImageOverlay">
-              <img src = "assets/macd-first-page.jpeg" height="160px" width="252px">
+              <label for="task-image-input">
+                <img src = "assets/macd-first-page.jpeg" height="160px" width="252px">
+              </label>
+              <input type="file" id="task-image-input" accept="image/*" style="display:none">
             </div>
             <div class="taskTitleOverlay">
               <label for="taskTitleInput"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Title :- </label>
@@ -33,10 +36,10 @@
             <div class="taskStagesOverlay">
               <label><i class="fa fa-check-square-o" aria-hidden="true"></i> Stages :- </label>
               <ul class="stagesList">
-                  <li><input type="checkbox"> &nbsp; Create HTML page</li>
-                  <li><input type="checkbox"> &nbsp; Add CSS to the page</li>
-                  <li><input type="checkbox"> &nbsp; Add JavaScript</li>
-                  <li><input type="checkbox"> &nbsp; Deploy the page</li>
+                  <li><input type="checkbox"> &nbsp; Create HTML page <i class="fa fa-times-circle" aria-hidden="true"></i></li>
+                  <li><input type="checkbox"> &nbsp; Add CSS to the page <i class="fa fa-times-circle" aria-hidden="true"></i></li>
+                  <li><input type="checkbox"> &nbsp; Add JavaScript <i class="fa fa-times-circle" aria-hidden="true"></i></li>
+                  <li><input type="checkbox"> &nbsp; Deploy the pagen <i class="fa fa-times-circle" aria-hidden="true"></i></li>
               </ul>
               <div class="addStageButton">
                 <i class="fa fa-plus" aria-hidden="true"></i> Add Stage
@@ -82,9 +85,9 @@
                 <h1>McDonalds Website Project</h1>
               </div>
               <div class="topnav">
-                <div class="navButton active">TASKS</div>
-                <div class="navButton">TEAM</div>
-                <div class="navButton">PROJECT</div>
+                <div class="navButton active tasks">TASKS</div>
+                <div class="navButton team">TEAM</div>
+                <div class="navButton project">PROJECT</div>
                 <!-- <a class="active" href="#">Tasks assigned</a>
                 <a href="#">Team info</a>
                 <a href="#">About project</a> -->

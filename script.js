@@ -45,8 +45,12 @@ function displayTaskOverlay()
             newCheckbox.checked = false;
         }
         let newText = document.createTextNode(" "+prop);
+        let closeSymbol = document.createElement('span');
+        closeSymbol.innerHTML = "&nbsp &nbsp \u274c";
+        closeSymbol.classList.add('stageCloseButton');
         newLI.appendChild(newCheckbox);
         newLI.appendChild(newText);
+        newLI.appendChild(closeSymbol);
         stagesList.appendChild(newLI);
     }
     overlayContainer.querySelector('.taskStatusOverlay select').selectedIndex = currentDataObject.status;
@@ -183,6 +187,46 @@ function deleteClick()
     overlayContainer.style.display = 'none';
 }
 
+function changeTaskImageClicked(event)
+{   
+    let uploadUrl = document.body.querySelector('.taskImageOverlay input').value;
+    uploadUrl = uploadUrl.slice(12);
+    uploadUrl = 'assets/' + uploadUrl;
+    let currentImage = document.body.querySelector('.taskImageOverlay img');
+    currentImage.src = uploadUrl;
+}
+
+function deleteStageClicked(event)
+{
+    if(!event.target.classList.contains('stageCloseButton'))
+    {
+        return;
+    }
+    event.target.parentElement.remove();
+}
+
+function addStageClicked(event)
+{
+    let stageName = prompt("Enter stage name:- ","");
+    if(stageName=="" || stageName == null)
+    {
+        return;
+    }
+    let stagesList = document.body.querySelector('.taskStagesOverlay .stagesList');
+    let newLI = document.createElement("li");
+    let newCheckbox = document.createElement("input");
+    newCheckbox.type = "checkbox";
+    newCheckbox.checked = false;
+    let newText = document.createTextNode(" "+stageName);
+    let closeSymbol = document.createElement('span');
+    closeSymbol.innerHTML = "&nbsp &nbsp \u274c";
+    closeSymbol.classList.add('stageCloseButton');
+    newLI.appendChild(newCheckbox);
+    newLI.appendChild(newText);
+    newLI.appendChild(closeSymbol);
+    stagesList.appendChild(newLI);
+}
+
 let userBoardToIndex = new Map();
 let indexToUserBoard = []; //new addded code
 let allUserBoards = document.body.querySelectorAll('.board-list');
@@ -230,3 +274,12 @@ for(let addButton of allAddButtons)
 
 let overlayDeleteButton = document.body.querySelector('.deleteButton');
 overlayDeleteButton.addEventListener('click',deleteClick);
+
+document.body.querySelector('.taskImageOverlay input').addEventListener('change',changeTaskImageClicked);
+document.body.querySelector('.taskStagesOverlay').addEventListener('click',deleteStageClicked);
+document.body.querySelector('.addStageButton').addEventListener('click',addStageClicked);
+//new code starts here
+document.body.querySelector('.topnav .team').addEventListener('click',function() {
+    location.assign("users.html");
+});
+
