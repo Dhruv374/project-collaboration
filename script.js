@@ -1,42 +1,84 @@
-let statusMapping = ["Not started" , "In-progress" , "On hold" , "Completed"];
-let monthMapping = ["Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" , "Jul" , "Aug" , "Sep" , "Oct" , "Nov", "Dec"];
-let statusColorMapping = ["yellow" , "purple" , "red" , "chartreuse"];
-let users = ["Dhruv Patel" , "John Paul"];
-let currentTask = null;
-let addingNewTask = false;
-let cardTemplate = document.querySelector('.card').cloneNode(true);
+let nextID = 0;
 
-function formatDate(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-
-    if (month.length < 2) 
-        month = '0' + month;
-    if (day.length < 2) 
-        day = '0' + day;
-
-    return [year, month, day].join('-');
+function taskConstructor() 
+{
+    this.taskid = nextID++;
+    this.imageUrl = null;
+    this.title = null;
+    this.assignee = null;
+    this.status = 0;
+    this.dueDate = "2010-12-31";
+    this.stages = {};
 }
 
-function displayTaskOverlay() 
+function taskToCard(task,card)
 {
-    currentTask = this;
+    card.querySelector(".taskImage img").src = task.imageUrl;
+    card.querySelector(".taskTitle").innerHTML = task.title;
+    let taskStatus = card.querySelector(".taskInfo .taskStatus");
+    let taskStatusSymbol = taskStatus.querySelector('.taskStatusSymbol');
+    taskStatusSymbol.style.color = statusColorMapping[task.status];
+    taskStatusSymbol.nextSibling.textContent = " " + statusMapping[task.status];
+    let DateString = " ";
+    DateString+=task.dueDate.slice(8,10);
+    DateString+=" ";
+    DateString+=monthMapping[+task.dueDate.slice(5,7)-1];
+    DateString+=",";
+    DateString+=task.dueDate.slice(0,4);
+    card.querySelector('.taskInfo .taskDue').firstElementChild.nextSibling.textContent = DateString;
+    let totalStages = 0;
+    let completedStages = 0;
+    for(let prop in task.stages)
+    {
+        totalStages++;
+        if(task.stages[prop])
+        {
+            completedStages++;
+        }
+    }
+    let stagesString = " " + completedStages + "/" + totalStages;
+    card.querySelector('.taskInfo').lastElementChild.firstElementChild.nextSibling.textContent = stagesString;
+}
+
+function editTaskClicked(event) 
+{
+    let currentCard = event.target.closest(".card");
+    if(currentCard == null)
+    {
+        return;
+    }
+    currenttaskID = currentCard.dataset.taskid;
+    let currentTask = tasks.find(task => task.taskid == currenttaskID);
+    currentboardID = currentTask.assignee;
     let overlayContainer = document.body.querySelector('.tasksOverlayContainer');
     overlayContainer.style.display = 'block';
-    currentDataObject = taskElementToData.get(this);
-    overlayContainer.querySelector('.taskImageOverlay img').src = currentDataObject.imageUrl;
-    overlayContainer.querySelector('.taskTitleOverlay input').value = currentDataObject.title;
-    overlayContainer.querySelector('.taskUserOverlay select').selectedIndex = currentDataObject.assignee;
+    overlayContainer.querySelector('.taskImageOverlay img').src = currentTask.imageUrl;
+    overlayContainer.querySelector('.taskTitleOverlay input').value = currentTask.title;
+    let taskUserSelector = overlayContainer.querySelector('.taskUserOverlay select');
+    taskUserSelector.innerHTML = null;
+    let totalIndex = -1;
+    let selectedIndex;
+    users.forEach(
+        function(user) {
+            let userSelect = document.createElement('option');
+            userSelect.value = user.name;
+            userSelect.innerHTML = user.name;
+            totalIndex++;
+            if(user.id == currentTask.assignee) {
+                selectedIndex = totalIndex;
+            }
+            taskUserSelector.appendChild(userSelect);
+        }
+    )
+    taskUserSelector.selectedIndex = selectedIndex;
     let stagesList = overlayContainer.querySelector('.taskStagesOverlay .stagesList');
     stagesList.innerHTML = null;
-    for(let prop in currentDataObject.stages)
+    for(let prop in currentTask.stages)
     {
         let newLI = document.createElement("li");
         let newCheckbox = document.createElement("input");
         newCheckbox.type = "checkbox";
-        if(currentDataObject.stages[prop])
+        if(currentTask.stages[prop])
         {
             newCheckbox.checked = true;
         }
@@ -53,43 +95,55 @@ function displayTaskOverlay()
         newLI.appendChild(closeSymbol);
         stagesList.appendChild(newLI);
     }
-    overlayContainer.querySelector('.taskStatusOverlay select').selectedIndex = currentDataObject.status;
-    overlayContainer.querySelector('.taskDateOverlay input').value = formatDate(currentDataObject.dueDate);
+    overlayContainer.querySelector('.taskStatusOverlay select').selectedIndex = currentTask.status;
+    overlayContainer.querySelector('.taskDateOverlay input').value = currentTask.dueDate;
 }
 
-function dataObjectConstructor() 
+function addTaskClicked(event)
 {
-    this.imageUrl = null;
-    this.title = null;
-    this.assignee = null;
-    this.status = 0;
-    this.dueDate = new Date(1970,12,31);
-    this.stages = {};
-}
-
-function closeTaskOverlay()
-{
-    if(addingNewTask)
+    if(!(event.target.classList.contains('tasksAdd') || event.target.classList.contains('fa')))
     {
-        addingNewTask = false;
-        currentTask.remove();
-        currentTask = null;
+        return;
     }
-    let overlayContainer = this.parentElement.parentElement;
-    overlayContainer.style.display = 'none';
+    currenttaskID = -1;
+    currentboardID = event.target.closest('.board-list').dataset.boardid;
+    let overlayContainer = document.body.querySelector('.tasksOverlayContainer');
+    overlayContainer.style.display = 'block';
+    overlayContainer.querySelector('.taskImageOverlay img').src = 'assets/default.png';
+    overlayContainer.querySelector('.taskTitleOverlay input').value = "";
+    let taskUserSelector = overlayContainer.querySelector('.taskUserOverlay select');
+    taskUserSelector.innerHTML = null;
+    let totalIndex = -1;
+    let selectedIndex;
+    users.forEach(
+        function(user) {
+            let userSelect = document.createElement('option');
+            userSelect.value = user.name;
+            userSelect.innerHTML = user.name;
+            totalIndex++;
+            if(user.id == currentboardID) {
+                selectedIndex = totalIndex;
+            }
+            taskUserSelector.appendChild(userSelect);
+        }
+    )
+    taskUserSelector.selectedIndex = selectedIndex;
+    let stagesList = overlayContainer.querySelector('.taskStagesOverlay .stagesList');
+    stagesList.innerHTML = null;
+    overlayContainer.querySelector('.taskStatusOverlay select').selectedIndex = 0;
+    overlayContainer.querySelector('.taskDateOverlay input').value = "2010-12-31";
 }
 
-function elementToData(task)
+function overlayToTask(task)
 {
-    let currentDataObject = taskElementToData.get(task);
     let overlay = document.querySelector('.tasksOverlay');
-    currentDataObject.imageUrl = overlay.querySelector('.taskImageOverlay img').src;
-    currentDataObject.title = overlay.querySelector('.taskTitleOverlay input').value;
+    task.imageUrl = overlay.querySelector('.taskImageOverlay img').src;
+    task.title = overlay.querySelector('.taskTitleOverlay input').value;
     let assigneeSelect = document.getElementById('taskUserInput');
-    currentDataObject.assignee = assigneeSelect.selectedIndex;
+    task.assignee = userIds[assigneeSelect.selectedIndex];
     let statusSelect = document.getElementById('taskStatusInput');
-    currentDataObject.status = statusSelect.selectedIndex;
-    currentDataObject.stages = {};
+    task.status = statusSelect.selectedIndex;
+    task.stages = {};
     let stagesList = overlay.querySelectorAll('.stagesList li');
     for(let stage of stagesList)
     {
@@ -97,94 +151,67 @@ function elementToData(task)
         let stageName = stageNameCheckbox.nextSibling.textContent;
         if(stageNameCheckbox.checked)
         {
-            currentDataObject.stages[stageName] = true;
+            task.stages[stageName] = true;
         }
         else
         {
-            currentDataObject.stages[stageName] = false;
+            task.stages[stageName] = false;
         }
     }
     let dueDateText = overlay.querySelector('.taskDateOverlay input').value;
-    currentDataObject.dueDate = new Date(dueDateText);
+    task.dueDate = dueDateText;
 }
 
-function dataToDisplay(task)
+function closeOverlay()
 {
-    let currentDataObject = taskElementToData.get(task);
-    task.querySelector(".taskImage img").src = currentDataObject.imageUrl;
-    task.querySelector(".taskTitle").innerHTML = currentDataObject.title;
-    let taskStatus = task.querySelector(".taskInfo .taskStatus");
-    let taskStatusSymbol = taskStatus.querySelector('.taskStatusSymbol');
-    taskStatusSymbol.style.color = statusColorMapping[currentDataObject.status];
-    taskStatusSymbol.nextSibling.textContent = " " + statusMapping[currentDataObject.status];
-    let DateString = " ";
-    DateString+=currentDataObject.dueDate.getDate();
-    DateString+=" ";
-    DateString+=monthMapping[currentDataObject.dueDate.getMonth()];
-    DateString+=",";
-    DateString+=currentDataObject.dueDate.getFullYear();
-    task.querySelector('.taskInfo .taskDue').firstElementChild.nextSibling.textContent = DateString;
-    let totalStages = 0;
-    let completedStages = 0;
-    for(let prop in currentDataObject.stages)
-    {
-        totalStages++;
-        if(currentDataObject.stages[prop])
-        {
-            completedStages++;
-        }
-    }
-    let stagesString = " " + completedStages + "/" + totalStages;
-    task.querySelector('.taskInfo').lastElementChild.firstElementChild.nextSibling.textContent = stagesString;
-}
-
-function saveClick()
-{
-    if(addingNewTask)
-    {
-        addingNewTask = false;
-    }
-    elementToData(currentTask);
-    dataToDisplay(currentTask);
-    let currentTaskAssignee = taskElementToData.get(currentTask).assignee;  //new added code
-    if(!indexToUserBoard[currentTaskAssignee].contains(currentTask))
-    {
-        indexToUserBoard[currentTaskAssignee].appendChild(currentTask);
-    }
-    let overlayContainer = this.parentElement.parentElement.parentElement;
+    currenttaskID = -1;
+    currentboardID = -1;
+    let overlayContainer = document.body.querySelector('.tasksOverlayContainer');
     overlayContainer.style.display = 'none';
 }
 
-function addTask()
+function saveTaskClicked(event)
 {
-    addingNewTask = true;
-    let parentUser = this.parentElement;
-    let userIndex = userBoardToIndex.get(parentUser);
-    let newCardNode = cardTemplate.cloneNode(true);
-    newCardNode.querySelector('.taskImage img').src = "assets/default.png";
-    newCardNode.querySelector('.taskTitle').innerHTML = "";
-    let taskStatus = newCardNode.querySelector(".taskInfo .taskStatus");
-    let taskStatusSymbol = taskStatus.querySelector('.taskStatusSymbol');
-    taskStatusSymbol.style.color = statusColorMapping[0];
-    taskStatusSymbol.nextSibling.textContent = "";
-    newCardNode.querySelector('.taskInfo .taskDue').firstElementChild.nextSibling.textContent = "";
-    newCardNode.querySelector('.taskInfo').lastElementChild.firstElementChild.nextSibling.textContent = "";
-    let newDataObject = new dataObjectConstructor();
-    newDataObject.assignee = userIndex;
-    newDataObject.imageUrl = "assets/default.png";
-    currentTask = newCardNode;
-    taskElementToData.set(newCardNode,newDataObject);
-    newCardNode.addEventListener('click',displayTaskOverlay);
-    displayTaskOverlay.call(newCardNode);
-    parentUser.appendChild(newCardNode);
+    let task;
+    let taskCard;
+    if(currenttaskID == -1)
+    {
+        task = new taskConstructor();
+        tasks.push(task);
+        taskCard = cardTemplate.cloneNode(true);
+        taskCard.dataset.taskid = task.taskid;
+    }
+    else
+    {
+        task = tasks.find(task => task.taskid == currenttaskID);
+        taskCard = document.body.querySelector(`.card[data-taskid="${currenttaskID}"]`);
+    }
+    overlayToTask(task);
+    taskToCard(task,taskCard);
+    if((currenttaskID == -1) || (currentboardID != task.assignee))
+    {
+        let taskParentCard = document.body.querySelector(`.board-list[data-boardid="${task.assignee}"]`);
+        taskParentCard.appendChild(taskCard);
+    }
+    localStorage['tasks'] = JSON.stringify(tasks);
+    closeOverlay();
 }
 
-function deleteClick()
+function deleteTaskClicked()
 {
-    currentTask.remove();
-    currentTask = null;
-    let overlayContainer = this.parentElement.parentElement.parentElement;
-    overlayContainer.style.display = 'none';
+    if(currenttaskID == -1)
+    {
+        closeOverlay();
+    }
+    else
+    {
+        let taskIndex = tasks.findIndex(task => task.taskid == currenttaskID);
+        taskCard = document.body.querySelector(`.card[data-taskid="${currenttaskID}"]`);
+        tasks.splice(taskIndex,1);
+        taskCard.remove();
+    }
+    localStorage['tasks'] = JSON.stringify(tasks);
+    closeOverlay();
 }
 
 function changeTaskImageClicked(event)
@@ -227,58 +254,92 @@ function addStageClicked(event)
     stagesList.appendChild(newLI);
 }
 
-let userBoardToIndex = new Map();
-let indexToUserBoard = []; //new addded code
-let allUserBoards = document.body.querySelectorAll('.board-list');
-let temp = 0;
-for(let board of allUserBoards)
-{
-    userBoardToIndex.set(board,temp++);
-    indexToUserBoard.push(board);
-}
+document.body.querySelector('.board-lists').addEventListener('click',editTaskClicked);
+document.body.querySelector('.board-lists').addEventListener('click',addTaskClicked);
+document.body.querySelector('.overlayButtons .saveButton').addEventListener('click',saveTaskClicked);
+document.body.querySelector('.overlayButtons .deleteButton').addEventListener('click',deleteTaskClicked);
+document.body.querySelector('.tasksOverlay .closeButton').addEventListener('click',closeOverlay);
+document.body.querySelector('.tasksOverlay .addStageButton').addEventListener('click',addStageClicked);
+document.body.querySelector('.tasksOverlay .stagesList').addEventListener('click',deleteStageClicked);
 
-let taskElementToData = new Map();
-let allTasks = document.body.querySelectorAll(".card");
-for(let task of allTasks) 
-{
-    let dataObject = {};
-    dataObject.imageUrl = "assets/macd-first-page.jpeg";
-    dataObject.title = "Create welcome page for restaurant";
-    dataObject.assignee = 0;
-    dataObject.status = 0;
-    dataObject.dueDate = new Date(2020,11,25);
-    dataObject.stages = {
-        "Create HTML Page": false,
-        "Add CSS to the Page": false,
-        "Add javascript": false,
-        "Deplpoy the page": false,
+let statusMapping = ["Not started" , "In-progress" , "On hold" , "Completed"];
+let monthMapping = ["Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" , "Jul" , "Aug" , "Sep" , "Oct" , "Nov", "Dec"];
+let statusColorMapping = ["yellow" , "purple" , "red" , "chartreuse"];
+let currenttaskID = -1;
+let currentboardID = -1;
+let cardTemplate = document.body.querySelector('.card').cloneNode(true);
+let users = JSON.parse(localStorage["users"]);
+
+let gridContainer = document.body.querySelector('.board-lists');
+gridContainer.innerHTML = null;
+userIds = [];
+users.forEach(
+    function(user) {
+        let currentUserBoard = document.createElement("section");
+        currentUserBoard.classList.add("board-list");
+        let taskAddSymbol = document.createElement("div");
+        taskAddSymbol.classList.add("tasksAdd");
+        taskAddSymbol.innerHTML = `<i class="fa fa-plus-circle" aria-hidden="true"></i></i>`;
+        currentUserBoard.appendChild(taskAddSymbol);
+        let taskTitle = document.createElement("div");
+        taskTitle.classList.add("list-title");
+        taskTitle.innerHTML = user.name;
+        currentUserBoard.appendChild(taskTitle);
+        currentUserBoard.dataset.boardid = user.id;
+        gridContainer.appendChild(currentUserBoard);
+        userIds.push(user.id);
     }
-    taskElementToData.set(task,dataObject);
-}
+);
 
-for(let task of allTasks)
+let tasks = JSON.parse(localStorage["tasks"] || null);
+if(tasks == null)
 {
-    task.addEventListener('click',displayTaskOverlay);
+    tasks = [];
+    let newTask1 = new taskConstructor();
+    newTask1.imageUrl = "assets/macd-first-page.jpeg";
+    newTask1.title = "Create welcome page of the restaurant";
+    newTask1.assignee = 0;
+    newTask1.status = 0;
+    newTask1.dueDate = "2020-12-25";
+    newTask1.stages = {
+        "Write HTML document" : false,
+        "Add styling to the page using CSS" : false,
+        "Add interaction using Javascript" : false,
+        "Deploy the page" : false,
+    };
+    tasks.push(newTask1);
+
+    let newTask2 = new taskConstructor();
+    newTask2.imageUrl = "assets/default.png";
+    newTask2.title = "create customer care utility";
+    newTask2.assignee = 1;
+    newTask2.status = 0;
+    newTask2.dueDate = "2020-12-25";
+    newTask2.stages = {
+        "Build static layout" : false,
+        "Add UI in the page" : false,
+        "Create chatbot" : false,
+        "Design ML model for chatbot" : false,
+    };
+    tasks.push(newTask2);
+
+    localStorage['tasks'] = JSON.stringify(tasks);
 }
-
-let overlayCloseButton = document.body.querySelector('.closeButton');
-overlayCloseButton.addEventListener('click',closeTaskOverlay);
-let overlaySaveButton = document.body.querySelector('.saveButton');
-overlaySaveButton.addEventListener('click',saveClick);
-
-let allAddButtons = document.body.querySelectorAll('.tasksAdd');
-for(let addButton of allAddButtons)
+else 
 {
-    addButton.addEventListener('click',addTask);
+    nextID = tasks[tasks.length-1].taskid+1;
 }
 
-let overlayDeleteButton = document.body.querySelector('.deleteButton');
-overlayDeleteButton.addEventListener('click',deleteClick);
+tasks.forEach(
+    function(task) {
+        let currentTaskCard = cardTemplate.cloneNode(true);
+        currentTaskCard.dataset.taskid = task.taskid;
+        taskToCard(task,currentTaskCard);
+        let currentTaskParent = gridContainer.querySelector(`.board-list[data-boardid="${task.assignee}"]`);
+        currentTaskParent.appendChild(currentTaskCard);
+    }
+);
 
-document.body.querySelector('.taskImageOverlay input').addEventListener('change',changeTaskImageClicked);
-document.body.querySelector('.taskStagesOverlay').addEventListener('click',deleteStageClicked);
-document.body.querySelector('.addStageButton').addEventListener('click',addStageClicked);
-//new code starts here
 document.body.querySelector('.topnav .team').addEventListener('click',function() {
     location.assign("users.html");
 });

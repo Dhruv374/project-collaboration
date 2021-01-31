@@ -4,6 +4,7 @@ let currentOpenID = -1;
 
 function userConstructor()
 {
+    this.id = nextID++;
     this.imageUrl = null;
     this.name = null;
     this.designation = null;
@@ -25,7 +26,7 @@ function userToCard(user,currentUserCard)
     currentUserCard.querySelector('.userLocation').appendChild(locationNode);
     currentUserCard.querySelector('.userMail').firstElementChild.nextSibling.textContent = " " + user.email;
     currentUserCard.querySelector('.userPhone').firstElementChild.nextSibling.textContent = " " + user.phone;
-    currentUserCard.dataset.id = userToID.get(user);
+    currentUserCard.dataset.id = user.id;
 }
 
 function editClicked(event)
@@ -35,7 +36,7 @@ function editClicked(event)
          return;
     }
     let clickedUserCard = event.target.closest('.flexItems');
-    let user = idToUser[clickedUserCard.dataset.id];
+    let user = users.find(user => user.id == clickedUserCard.dataset.id);
     currentOpenID = +clickedUserCard.dataset.id;
     let overlay = document.body.querySelector('.userOverlayContainer');
     overlay.querySelector('.userImageOverlay img').src = user.imageUrl;
@@ -74,15 +75,13 @@ function saveClicked(event)
     if(currentOpenID == -1)
     {
         user = new userConstructor();
-        userToID.set(user,nextID);
-        idToUser[nextID] = user;
-        nextID++;
+        users.push(user);
         userCard = userCardTemplate.cloneNode(true);
     }
     else
     {
-        currentOpenID = currentOpenID.toString();
-        user = idToUser[currentOpenID];
+        currentOpenID = +currentOpenID;
+        user = users.find(user => user.id == currentOpenID);
         userCard = document.body.querySelector(`.flexItems[data-id="${currentOpenID}"]`);
     }
     user.imageUrl = overlay.querySelector('.userImageOverlay img').src;
@@ -97,6 +96,7 @@ function saveClicked(event)
         let flexContainer = document.getElementById('flexContainer');
         flexContainer.appendChild(userCard);
     }
+    localStorage["users"] = JSON.stringify(users);
     closeOverlay();
 }
 
@@ -104,10 +104,10 @@ function deleteClicked(event)
 {
     if(currentOpenID != -1)
     {
-        let user = idToUser[currentOpenID.toString()];
+        let userIndex = users.findIndex(user => user.id == currentOpenID);
         let userCard = document.body.querySelector(`.flexItems[data-id="${currentOpenID}"]`);
-        delete idToUser[currentOpenID.toString()];
-        userToID.delete(user);
+        users.splice(userIndex,1);
+        localStorage["users"] = JSON.stringify(users);
         userCard.remove();
     }
     closeOverlay();
@@ -123,38 +123,46 @@ function changeImageClicked(event)
 }
 
 
-let idToUser = {};
-let newUser1 = new userConstructor();
-newUser1.imageUrl = "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png";
-newUser1.name = "Dhruv Patel";
-newUser1.designation = "project head";
-newUser1.location = "Mumbai, India";
-newUser1.email = "dhruv.patel@comapnay.com";
-newUser1.phone = "+917878345672";
-idToUser[nextID] = newUser1;
-nextID++;
+let users = JSON.parse(localStorage['users'] || null);
+if(users == null)
+{
+    users = [];
+    let newUser1 = new userConstructor();
+    newUser1.imageUrl = "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png";
+    newUser1.name = "Dhruv Patel";
+    newUser1.designation = "project head";
+    newUser1.location = "Mumbai, India";
+    newUser1.email = "dhruv.patel@comapnay.com";
+    newUser1.phone = "+917878345672";
+    users.push(newUser1);
 
-let newUser2 = new userConstructor();
-newUser2.imageUrl = "assets/john-paul.jpeg";
-newUser2.name = "John Paul";
-newUser2.designation = "project manager";
-newUser2.location = "New York, USA";
-newUser2.email = "john.paul@comapnay.com";
-newUser2.phone = "+19998645408";
-idToUser[nextID] = newUser2;
-nextID++;
+    let newUser2 = new userConstructor();
+    newUser2.imageUrl = "assets/john-paul.jpeg";
+    newUser2.name = "John Paul";
+    newUser2.designation = "project manager";
+    newUser2.location = "New York, USA";
+    newUser2.email = "john.paul@comapnay.com";
+    newUser2.phone = "+19998645408";
+    users.push(newUser2);
 
-let userToID = new Map();
+    localStorage['users'] = JSON.stringify(users);
+}
+
+else {
+    nextID = users[users.length-1].id+1;
+}
+
 let flexContainer = document.getElementById('flexContainer');
 flexContainer.innerHTML = null;  //Danger here
-for(let key in idToUser)
-{  
-    user = idToUser[key];
-    userToID.set(user,+key);
-    let currentUserCard = userCardTemplate.cloneNode(true);
-    userToCard(user,currentUserCard);
-    flexContainer.appendChild(currentUserCard);
-}
+
+users.forEach(
+    function(user) {
+        let currentUserCard = userCardTemplate.cloneNode(true);
+        currentUserCard.dataset.id = user.id;
+        userToCard(user,currentUserCard);
+        flexContainer.appendChild(currentUserCard);
+    }
+)
 
 document.getElementById('flexContainer').addEventListener('click',editClicked);
 document.body.querySelector('.addUserContainer').addEventListener('click',addUserClicked);
@@ -162,7 +170,6 @@ document.body.querySelector('.saveButton').addEventListener('click',saveClicked)
 document.body.querySelector('.deleteButton').addEventListener('click',deleteClicked);
 document.body.querySelector('.closeButton').addEventListener('click',closeOverlay);
 document.body.querySelector('.userImageOverlay input').addEventListener('change',changeImageClicked);
-
 
 document.body.querySelector('.topnav .tasks').addEventListener('click',function() {
     location.assign("tasks.html");

@@ -180,9 +180,9 @@ html,body {
   
 }
 
-.taskImageOverlay:hover {
+.taskImageOverlay img:hover {
   cursor: pointer;
-  background-color: hsl(202,65%,12%);
+  opacity: 0.85;
 }
 
 .taskTitleOverlay {
