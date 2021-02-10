@@ -1,0 +1,625 @@
+.stageCloseButton
+{
+  font-size: 12px;
+}
+
+.stageCloseButton:hover
+{
+  cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+html,body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(0, 121, 191);
+  overflow-y: hidden;
+}
+
+.tasksOverlayContainer, .userOverlayContainer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.tasksOverlay, .userOverlay {
+  background-color: rgb(235, 236, 240);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 110px;
+  max-width: 700px;
+  border-radius: 5px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.userOverlay {
+  max-width: 600px;
+}
+
+.userImageOverlay {
+  background-color: #091e2a;
+  display: flex;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.userImageOverlay img {
+  border-radius: 50%;
+}
+
+.userImageOverlay img:hover {
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+.userNameOverlay {
+  font: 1rem 'Fira Sans', sans-serif;
+  margin: 10px;
+  padding-left: 30px;
+  font-size: 20px;
+  margin-top: 50px;
+  font-weight: lighter;
+}
+
+#userNameInput {
+  font-size: 15px;
+  border-radius: 3px;
+  width: 300px;
+  position: absolute;
+  left: 220px;
+}
+
+.userDesignationOverlay {
+  font: 1rem 'Fira Sans', sans-serif;
+  margin: 10px;
+  padding-left: 30px;
+  font-size: 20px;
+  margin-top: 25px;
+  font-weight: lighter;
+}
+
+#userDesignationInput {
+  font-size: 15px;
+  border-radius: 3px;
+  width: 300px;
+  position: absolute;
+  left: 220px;
+}
+
+.userLocationOverlay {
+  font: 1rem 'Fira Sans', sans-serif;
+  margin: 10px;
+  padding-left: 30px;
+  font-size: 20px;
+  margin-top: 25px;
+  font-weight: lighter;
+}
+
+#userLocationInput {
+  font-size: 15px;
+  border-radius: 3px;
+  width: 300px;
+  position: absolute;
+  left: 220px;
+}
+
+.userEmailOverlay {
+  font: 1rem 'Fira Sans', sans-serif;
+  margin: 10px;
+  padding-left: 30px;
+  font-size: 20px;
+  margin-top: 25px;
+  font-weight: lighter;
+}
+
+#userEmailInput {
+  font-size: 15px;
+  border-radius: 3px;
+  width: 300px;
+  position: absolute;
+  left: 220px;
+}
+
+.userPhoneOverlay {
+  font: 1rem 'Fira Sans', sans-serif;
+  margin: 10px;
+  padding-left: 30px;
+  font-size: 20px;
+  margin-top: 25px;
+  font-weight: lighter;
+}
+
+#userPhoneInput {
+  font-size: 15px;
+  border-radius: 3px;
+  width: 300px;
+  position: absolute;
+  left: 220px;
+}
+
+.closeButton {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  color: white;
+  font: 22px 'Fira Sans', sans-serif;
+  /* background-color: black; */
+  padding: 5px;
+  font-weight: lighter;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+}
+
+.closeButton:hover {
+  background-color: rgba(255,255,255,0.4);
+  cursor: pointer;
+}
+
+.taskImageOverlay {
+  display: flex;
+  justify-content: center;
+  background-color:#091e2a;
+  border-radius: 5px;
+  
+}
+
+.taskImageOverlay img:hover {
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+.taskTitleOverlay {
+  font: 1rem 'Fira Sans', sans-serif;
+  margin: 10px;
+  padding-left: 30px;
+  font-size: 20px;
+  margin-top: 50px;
+  font-weight: lighter;
+}
+
+.taskUserOverlay {
+  font: 1rem 'Fira Sans', sans-serif;
+  margin: 10px;
+  padding-left: 30px;
+  font-size: 20px;
+  margin-top: 20px;
+  font-weight: lighter;
+}
+
+.taskStagesOverlay {
+  font: 1rem 'Fira Sans', sans-serif;
+  margin: 10px;
+  padding-left: 30px;
+  font-size: 20px;
+  margin-top: 20px;
+  font-weight: lighter;
+}
+
+.addStageButton {
+  background-color:#b366ff;
+  font-size: 15px;
+  font-weight: lighter;
+  padding: 5px;
+  margin-left: 40px;
+  width: fit-content;
+  border-radius: 5px;
+}
+
+.addStageButton:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.taskStatusOverlay {
+  font: 1rem 'Fira Sans', sans-serif;
+  margin: 10px;
+  padding-left: 30px;
+  font-size: 20px;
+  margin-top: 20px;
+  font-weight: lighter;
+}
+
+.taskDateOverlay {
+  font: 1rem 'Fira Sans', sans-serif;
+  margin: 10px;
+  padding-left: 30px;
+  font-size: 20px;
+  margin-top: 20px;
+  font-weight: lighter;
+}
+
+.overlayButtons {
+  margin-top: 50px;
+  margin-left: 40px;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 30px;
+  font: 1rem 'Fira Sans', sans-serif;
+  font-weight: 320;
+}
+
+.saveButton {
+  padding: 5px;
+  background-color: #80ff80;
+  border-radius: 5px;
+  width: 70px;
+  text-align: center;
+}
+
+.saveButton:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.deleteButton {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #ff8080;
+}
+
+.deleteButton:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.stagesList {
+  font-size: 17px;
+  font: 1rem 'Fira Sans', serif;
+}
+
+.stagesList li {
+  margin-bottom: 5px;
+}
+
+#taskStatusInput {
+  margin-left: 30px;
+  font-size: 15px;
+}
+
+#taskTitleInput {
+  font-size: 15px;
+  border-radius: 3px;
+  width: 500px;
+  margin-left: 45px;
+}
+
+#taskUserInput {
+  font-size: 15px;
+  border-radius: 3px;
+  width: 250px;
+  margin-left: 12px;
+}
+
+#taskDateInput {
+  margin-left: 5px;
+  font-size: 15px;
+}
+
+.base {
+    background-color: rgb(0, 121, 191);
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+    font-size: 14px;
+    display: grid;
+    grid-template-rows: max-content auto;
+    grid-gap: 20px;
+    padding: 5px;
+    /* padding-right: 60px; */
+    max-height: 100vh;
+  }
+
+  .addUserContainer {
+    position: fixed;
+    font-size: 30px;
+    right: 100px;
+    bottom: 70px;
+    color: black;
+    /* color: rgb(0, 121, 191); */
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    box-shadow: 5px 5px 5px black;
+    z-index: 1;  
+  }
+
+  .addUserContainer:hover {
+    cursor: pointer;
+    height: 80px;
+    width: 80px;
+    font-size: 35px;
+  }
+
+  
+
+  .addUser {
+    height: max-content;
+    padding-top: 15px;
+    padding-left: 5px;
+  }
+
+
+  
+  .header {
+    text-align: center;
+    background-color:#63A1D3;
+    position: relative;
+    height: 100px;
+  }
+  
+  #projectName 
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color:black;
+    font-size: 15px;
+}
+  
+  .header .logo {
+    background-color: rgba(255, 255, 255, 0.3);
+    justify-self: center;
+  }
+  
+  .header .right-aligned {
+    justify-self: flex-end;
+  }
+  
+  .board {
+    display: grid;
+    /* grid-gap: 10px;
+    grid-template-rows: max-content auto; */
+  }
+  
+  
+  .board-lists {
+    padding-top: 15px;
+    display: grid;
+    grid-auto-columns: 272px;
+    grid-auto-flow: column;
+    grid-gap: 12px;
+    overflow: scroll;
+    min-height: calc(100vh - 125px);
+  }
+  
+  .board-list {
+    background-color: rgb(235, 236, 240);
+    border-radius: 5px;
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-gap: 10px;
+    height: max-content;
+    max-height: calc(100vh - 145px);
+    padding: 10px;
+    overflow: scroll;
+    position: relative;
+  }
+
+  .tasksAdd {
+    position: absolute;
+    right: 20px;
+    top: 3px;
+    padding: 5px;
+    font-size: 20px;
+  }
+
+  .tasksAdd:hover {
+    cursor: pointer;
+    background-color: #c5c8d3;
+    border-radius: 5px;
+  }
+  
+  .list-title {
+    font-weight: bold;
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 rgba(9,30,66,.25);
+    /* padding-top: 2px; */
+    padding-bottom: 10px;
+  }
+
+  .card:hover {
+    cursor: pointer;
+    box-shadow: 5px 5px 10px #666666;
+  }
+
+  .taskImage img {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+
+  .taskInfo {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    color:  #737373;
+    align-items: center;
+  }
+
+  .taskStatusSymbol {
+    color: yellow;
+  }
+
+  .taskDue {
+    background-color: #ff6666;
+    color: white;
+    padding: 3px;
+    border-radius: 3px;
+  }
+
+  .titleLineBreaks {
+    width: 232px;
+  }
+  
+  .add-card {
+    padding-top: 10px;
+    padding-bottom: 5px;
+  }
+
+  .topnav {
+    background-color: #63A1D3;
+    overflow: hidden;
+    display: flex;
+    justify-content: center; 
+    position: absolute;
+    left: 15px;
+    top: 35px;
+  }
+
+
+  
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+  }
+  
+  .topnav a:hover {
+    background-color: rgb(235, 236, 240);
+    color: black;
+  }
+  
+  .topnav a.active {
+    color: white;
+    background-color: rgb(0, 121, 191);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  .navButton {
+    background-color:#63A1D3;
+    margin-right: 10px;
+    font-weight: bold;
+    padding: 5px;
+  }
+
+  .navButton:hover {
+    border-radius: 5px;
+    background-color:#9cc3e3;
+    cursor: pointer;
+  }
+
+  .topnav div.active {
+    border-radius: 5px;
+    background-color:#9cc3e3;
+  }
+
+  .taskTitle {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .stagesList li {
+    list-style-type: none;
+  }
+
+  .list-title {
+    font-size: medium;
+    text-align: center;
+  }
+
+  #flexContainer
+  {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-y: scroll;
+    max-height: calc(100vh - 120px);
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+
+  .flexItems 
+  {
+    background-color: #d9d9d9 ;
+    /* background-color: #e6e6e6; */
+    width: 330px;
+    margin: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    padding-bottom: 50px;
+    position: relative;
+    box-shadow: 5px 5px 10px #666666;
+  }
+
+  .userEdit {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    font-size: large;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .userEdit:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+
+  .userImage {
+    text-align: center;
+  }
+
+  .userImage img {
+    border-radius: 100%;
+    margin-top: 60px;
+  }
+
+  .userName {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  .lineBreaks {
+    width: 90%;
+  }
+
+  .userDesignation {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-style: oblique;
+    font-size: 18px;
+    font-family: serif;
+  }
+
+  .userInfo {
+    font-size: 15px;
+    margin-left: 25px;
+    margin-top: 15px;
+  }
+
+  .userLocation {
+    margin-top: 25px;
+  }
