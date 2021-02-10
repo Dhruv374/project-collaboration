@@ -1,5 +1,7 @@
 import React,{useEffect, useState, useCallback} from 'react';
 import ReactDOM from 'react-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import actions from './store/actions';
 
 const AddUserButton = React.memo(function({clickHandle}) {
 
@@ -257,8 +259,11 @@ function UserOverlay({user,handleClose,handleSave,handleDelete}) {
     );
 }
 
-function UserContainer({users}) 
+function UserContainer() 
 {
+    const users = useSelector(state => state.users);
+    const dispatch = useDispatch();
+
     const [overlay,setOverlay] = useState(null);
 
     const editClick = useCallback((user) => setOverlay(user),[]);
@@ -271,20 +276,16 @@ function UserContainer({users})
         if(newUser.id == -1) {
             newUser.id = users[users.length-1].id+1;
             newUser.tasks = [];
-            users.push(newUser);
+            dispatch(actions.addUser(newUser));
         }
         else {
-            let ind = users.findIndex((user) => user.id == newUser.id);
-            users[ind] = newUser;
+            dispatch(actions.updateUser(newUser.id,newUser))
         }
-        commitUsers(users);
         setOverlay(null);
     }
 
     function handleDelete(id) {
-        let ind = users.findIndex((user) => user.id == id);
-        users.splice(ind,1);
-        commitUsers(users);
+        dispatch(actions.removeUser(id));
         setOverlay(null);
     }
 
@@ -312,48 +313,15 @@ function UserContainer({users})
 
 function Team(props) {
 
-    let users = fetchUsers();
+    useEffect(function() {
+        return () => alert("");
+    },[])
 
     return (
         <section className="board">
-            <UserContainer users={users}/>
+            <UserContainer/>
         </section>
     );
-}
-
-function fetchUsers() {
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-    if(users.length == 0)
-    {
-        let newUser1 = {};
-        newUser1.id = 0;
-        newUser1.imageUrl = "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png";
-        newUser1.name = "Dhruv Patel";
-        newUser1.designation = "project head";
-        newUser1.location = "Mumbai, India";
-        newUser1.email = "dhruv.patel@comapnay.com";
-        newUser1.phone = "917878345672";
-        newUser1.tasks = [0];
-        users.push(newUser1);
-
-        let newUser2 = {};
-        newUser2.id = 1;
-        newUser2.imageUrl = "assets/john-paul.jpeg";
-        newUser2.name = "John Paul";
-        newUser2.designation = "project manager";
-        newUser2.location = "New York, USA";
-        newUser2.email = "john.paul@comapnay.com";
-        newUser2.phone = "19998645408";
-        newUser2.tasks = [1];
-        users.push(newUser2);
-
-        commitUsers(users);
-    }
-    return users;
-}
-
-function commitUsers(users) {
-    localStorage.setItem('users',JSON.stringify(users));
 }
 
 export default Team;

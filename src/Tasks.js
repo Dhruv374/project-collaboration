@@ -2,7 +2,9 @@ import { faUserInjured } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { useMemo } from 'react';
 import ReactDOM from 'react-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { useCallback, useState } from 'react/cjs/react.development';
+import actions from './store/actions'
 
 let statusMapping = ["Not started" , "In-progress" , "On hold" , "Completed"];
 let monthMapping = ["Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" , "Jul" , "Aug" , "Sep" , "Oct" , "Nov", "Dec"];
@@ -296,11 +298,6 @@ function TaskOverlay({task,users,handleClose,handleSave,handleDelete}) {
         }
         else {
             newTask.taskId = task.taskId;
-            if(selectedIndex != currentAssigneeIndex) {
-                let taskIndex = users[selectedIndex].tasks.findIndex((taskId) => taskId == newTask.taskId);
-                users[selectedIndex].tasks.splice(taskIndex,1);
-                users[currentAssigneeIndex].tasks.push(newTask.taskId);
-            }
         }
         newTask.imageUrl = taskImage;
         newTask.title = taskTitle;
@@ -359,7 +356,11 @@ function TaskOverlay({task,users,handleClose,handleSave,handleDelete}) {
     );
 }
 
-function TasksContainer({tasks,users}) {
+function TasksContainer() {
+
+    const tasks = useSelector(state => state.tasks);
+    const users = useSelector(state => state.users);
+    const dispatch = useDispatch();
 
     const [overlay,setOverlay] = useState(null);
 
@@ -374,24 +375,17 @@ function TasksContainer({tasks,users}) {
     function handleSave(newTask) {
         if(newTask.taskId == -1) {
             newTask.taskId = tasks[tasks.length-1].taskId+1;
-            (users.find((user) => user.id == newTask.assignee)).tasks.push(newTask.taskId);
-            tasks.push(newTask);
+            dispatch(actions.addTask(newTask));
         }
         else {
-            let ind = tasks.findIndex((task) => task.taskId == newTask.taskId);
-            tasks[ind] = newTask;
+            dispatch(actions.updateTask(newTask.taskId,newTask));
         }
         taskMap.set(newTask.taskId,newTask);
-        commitUsers(users);
-        commitTasks(tasks);
         setOverlay(null);
     }
     
     function handleDelete(id) {
-        let ind = tasks.findIndex((task) => task.taskId == id);
-        tasks.splice(ind,1);
-        commitUsers(users);
-        commitTasks(tasks);
+        dispatch(actions.removeTask(id));
         setOverlay(null);
     }
 
@@ -432,64 +426,11 @@ function TasksContainer({tasks,users}) {
 
 
 function Tasks(props) {
-    let users = fetchUsers();
-    let tasks = fetchTasks();
     return (
         <section className="board">
-            <TasksContainer users={users} tasks={tasks} />
+            <TasksContainer />
         </section>
     )
-}
-
-function fetchTasks() {
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    if(tasks.length == 0)
-    {
-        let newTask1 = {};
-        newTask1.taskId = 0;
-        newTask1.imageUrl = "assets/macd-first-page.jpeg";
-        newTask1.title = "Create welcome page of the restaurant";
-        newTask1.assignee = 0;
-        newTask1.status = 0;
-        newTask1.dueDate = "2020-12-25";
-        newTask1.stages = {
-            "Write HTML document" : false,
-            "Add styling to the page using CSS" : false,
-            "Add interaction using Javascript" : false,
-            "Deploy the page" : false,
-        };
-        tasks.push(newTask1);
-
-        let newTask2 = {};
-        newTask2.taskId = 1;
-        newTask2.imageUrl = "assets/default.png";
-        newTask2.title = "create customer care utility";
-        newTask2.assignee = 1;
-        newTask2.status = 0;
-        newTask2.dueDate = "2020-12-25";
-        newTask2.stages = {
-            "Build static layout" : false,
-            "Add UI in the page" : false,
-            "Create chatbot" : false,
-            "Design ML model for chatbot" : false,
-        };
-        tasks.push(newTask2);
-        commitTasks(tasks);
-    }
-    return tasks;
-}
-
-function commitTasks(tasks) {
-    localStorage.setItem('tasks',JSON.stringify(tasks));
-}
-
-function fetchUsers() {
-    let users = JSON.parse(localStorage.getItem('users'));
-    return users;
-}
-
-function commitUsers(users) {
-    localStorage.setItem('users',JSON.stringify(users));
 }
 
 export default Tasks;
